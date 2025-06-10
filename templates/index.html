@@ -16,43 +16,11 @@
     Carregando tempo de amor...
 </div>
 
-<script>
-    const dataInicio = new Date("{{ data_inicio }}");
-
-    function atualizarContador() {
-        const agora = new Date();
-        let diff = agora - dataInicio;
-
-        const segundos = Math.floor(diff / 1000) % 60;
-        const minutos = Math.floor(diff / (1000 * 60)) % 60;
-        const horas = Math.floor(diff / (1000 * 60 * 60)) % 24;
-
-        let totalDias = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-        // Calcular anos e meses aproximados
-        const dataTemp = new Date(dataInicio.getTime());
-        let anos = 0;
-        let meses = 0;
-
-        while (dataTemp <= agora) {
-            dataTemp.setMonth(dataTemp.getMonth() + 1);
-            if (dataTemp <= agora) meses++;
-        }
-
-        anos = Math.floor(meses / 12);
-        meses = meses % 12;
-
-        const dias = totalDias - Math.floor((anos * 365.25) + (meses * 30.44));
-
-        document.getElementById("contador").innerHTML =
-            `Eu te amo há: <strong>${anos}</strong> anos, <strong>${meses}</strong> meses, ` +
-            `<strong>${dias}</strong> dias, <strong>${horas}</strong> horas, ` +
-            `<strong>${minutos}</strong> minutos e <strong>${segundos}</strong> segundos!`;
-    }
-
-    setInterval(atualizarContador, 1000);
-    atualizarContador();
-</script>
+<p>
+    Eu te amo há:
+    {{ anos }} anos, {{ meses }} meses, {{ dias }} dias,
+    {{ horas }} horas, {{ minutos }} minutos e {{ segundos }} segundos!
+  </p>
 
 
 
