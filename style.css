@@ -1,105 +1,198 @@
 body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #1a1a1a;
-    margin: 0;
-    padding: 0;
-    color: #f2e9e4;
-}
-
-.titulo-principal {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5em;
-    text-align: center;
-    color: #ff6f91;
-    margin: 40px 20px 20px;
-}
-
-.contador {
-    text-align: center;
-    font-size: 1.3em;
-    margin-top: 20px;
-    color: #f2e9e4;
-}
-
-.galeria {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin: 40px auto;
-    width: 90%;
-    max-width: 400px;
-}
-
-.galeria img {
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.mensagem-de-amor {
-    max-width: 90%;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #2a2a2a;
-    border-left: 5px solid #ff6f91;
-    border-radius: 10px;
-    font-size: 1.1em;
-    line-height: 1.6;
-    color: #f2e9e4;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-.mensagem-de-amor .assinatura {
-    text-align: right;
-    font-weight: bold;
-    color: #ff6f91;
-    margin-top: 20px;
-}
-
-.playlist-container {
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
-    margin: 40px auto;
-    width: 100%;
+    align-items: center;
+    margin: 0;
+    background: linear-gradient(to right, #37474F, #455A64); /* Tons de cinza escuro */
+    color: #ECEFF1; /* Branco acinzentado para o texto */
+    box-sizing: border-box;
+    min-width: 320px; /* Garante uma largura mínima, evita bugs estranhos em telas muito pequenas */
+    overflow-x: hidden; /* ABSOLUTAMENTE CRÍTICO para evitar rolagem horizontal indesejada */
+}
+
+.container {
+    background-color: rgba(55, 71, 79, 0.8); /* Cinza escuro com transparência */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 90%; /* Continua sendo 90% da largura do pai */
+    max-width: 960px; /* Um valor máximo para desktops, ajustável se quiser maior ou menor */
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura */
+    margin: 20px auto;
+}
+
+h1, h2 {
+    color: #FFAB91; /* Laranja claro/pêssego para destaque */
+    margin-bottom: 20px;
+}
+
+/* Contador de Tempo */
+.countdown {
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #A5D6A7; /* Verde claro para destacar */
+    margin-bottom: 30px;
+    padding: 10px;
+    border: 2px solid #A5D6A7;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+/* Galeria de Fotos */
+.gallery-section {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.gallery-container {
+    position: relative;
+    width: 100%; /* Ocupa 100% do container pai */
+    max-width: 600px; /* Limite para não ficar gigante em telas muito largas */
+    margin: 0 auto;
+    overflow: hidden; /* CRÍTICO: ESCONDE QUALQUER COISA QUE SAIR DA BORDA */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-color: #546E7A;
+    padding: 15px;
+    box-sizing: border-box; /* Adicione aqui também para garantir o padding */
+}
+
+.gallery {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    /* Certifique-se de que não haja largura fixa aqui */
+}
+
+.gallery img {
+    width: 100%; /* Cada imagem ocupa 100% do espaço disponível para ela */
+    height: auto; /* Mantém a proporção */
+    display: block;
+    object-fit: cover;
+    flex-shrink: 0; /* IMPEDE QUE A IMAGEM SEJA REDUZIDA */
+}
+
+.prev-button, .next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ECEFF1;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.5em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.prev-button:hover, .next-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev-button {
+    left: 10px;
+}
+
+.next-button {
+    right: 10px;
+}
+
+/* Texto Personalizado */
+.text-section {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: left;
+    line-height: 1.7;
+    background-color: #607D8B; /* Cinza azulado mais claro para o texto */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.text-section p {
+    font-size: 1.1em;
+    color: #CFD8DC; /* Branco acinzentado um pouco mais escuro */
+}
+
+/* Spotify Playlist */
+.spotify-section {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .spotify-embed {
-    border-radius: 12px;
-    width: 90%;
-    max-width: 380px;
-    height: 152px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+/* --- Media Queries para Responsividade --- */
+
+/* Telas menores que 768px (tablets em retrato e celulares) */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px; /* Reduz o padding em telas menores */
+        margin: 15px auto; /* Ajusta a margem */
+    }
+
+    h1 {
+        font-size: 1.8em; /* Diminui o tamanho do título principal */
+    }
+
+    h2 {
+        font-size: 1.5em; /* Diminui o tamanho dos subtítulos */
+    }
+
+    .countdown {
+        font-size: 1.6em; /* Reduz o tamanho da fonte do contador */
+        padding: 8px;
+    }
+
+    .gallery-container {
+        max-width: 100%; /* Garante que a galeria ocupe a largura total */
+        padding: 10px; /* Reduz o padding interno da galeria */
+    }
+
+    .prev-button, .next-button {
+        font-size: 1.2em; /* Diminui o tamanho dos botões de navegação da galeria */
+        padding: 8px 12px;
+    }
+
+    .text-section {
+        padding: 20px; /* Reduz o padding do texto */
+        line-height: 1.5; /* Ajusta o espaçamento entre linhas */
+    }
+
+    .text-section p {
+        font-size: 1em; /* Diminui o tamanho da fonte do texto */
+    }
+
+    .spotify-embed {
+        height: 120px; /* Pode reduzir um pouco a altura do player do Spotify em telas menores */
+    }
 }
 
-.frase-final {
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5em;
-    margin: 40px 20px 60px;
-    color: #ff6f91;
-}
-.galeria-container {
-  overflow-x: auto;
-  white-space: nowrap;
-  padding: 10px;
-  margin: 30px 0;
-}
+/* Telas muito pequenas (celulares em geral) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5em;
+    }
 
-.galeria-scroll {
-  display: flex;
-  gap: 15px;
-}
+    h2 {
+        font-size: 1.3em;
+    }
 
-.galeria-scroll img {
-  height: 250px;
-  border-radius: 12px;
-  object-fit: cover;
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
-}
+    .countdown {
+        font-size: 1.3em;
+        /* Quebra o texto em várias linhas para melhor visualização */
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-.galeria-scroll img:hover {
-  transform: scale(1.05);
+    /* Reduz ainda mais o tamanho dos botões de navegação da galeria */
+    .prev-button, .next-button {
+        font-size: 1em;
+        padding: 5px 10px;
+    }
 }
-
