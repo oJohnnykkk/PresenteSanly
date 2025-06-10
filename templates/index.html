@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Feliz Dia dos Namorados</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <h1 class="titulo-principal">Entre todas as histórias de amor, a nossa é a minha favorita.</h1>
+
+    <div class="contador" id="contador">
+    Carregando tempo de amor...
+</div>
+
+<script>
+    const dataInicio = new Date("{{ data_inicio }}");
+
+    function atualizarContador() {
+        const agora = new Date();
+        let diff = agora - dataInicio;
+
+        const segundos = Math.floor(diff / 1000) % 60;
+        const minutos = Math.floor(diff / (1000 * 60)) % 60;
+        const horas = Math.floor(diff / (1000 * 60 * 60)) % 24;
+
+        let totalDias = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+        // Calcular anos e meses aproximados
+        const dataTemp = new Date(dataInicio.getTime());
+        let anos = 0;
+        let meses = 0;
+
+        while (dataTemp <= agora) {
+            dataTemp.setMonth(dataTemp.getMonth() + 1);
+            if (dataTemp <= agora) meses++;
+        }
+
+        anos = Math.floor(meses / 12);
+        meses = meses % 12;
+
+        const dias = totalDias - Math.floor((anos * 365.25) + (meses * 30.44));
+
+        document.getElementById("contador").innerHTML =
+            `Eu te amo há: <strong>${anos}</strong> anos, <strong>${meses}</strong> meses, ` +
+            `<strong>${dias}</strong> dias, <strong>${horas}</strong> horas, ` +
+            `<strong>${minutos}</strong> minutos e <strong>${segundos}</strong> segundos!`;
+    }
+
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+</script>
+
+
+
+
+    <!-- Música do casal -->
+    <div class="playlist-container">
+    <iframe class="spotify-embed" src="https://open.spotify.com/embed/playlist/4uK2M6t8wTH3MTnKnl6U6N?utm_source=generator"
+            width="100%" height="152" frameBorder="0"
+            allowtransparency="true" allow="encrypted-media">
+
+    </iframe>
+</div>
+
+    <!-- Galeria vertical de fotos -->
+    <div class="galeria-container">
+  <div class="galeria-scroll">
+    <img src="{{ url_for('static', filename='fotos/foto1.jpg') }}" alt="Foto 1">
+    <img src="{{ url_for('static', filename='fotos/foto2.jpg') }}" alt="Foto 2">
+    <img src="{{ url_for('static', filename='fotos/foto3.jpg') }}" alt="Foto 3">
+  </div>
+</div>
+
+    <div class="mensagem-de-amor">
+    <p>Meu amor,</p>
+    <p>
+        Hoje é Dia dos Namorados, mas a verdade é que todo dia ao seu lado é uma celebração do amor.<br>
+        É impressionante como você consegue transformar momentos simples em memórias inesquecíveis.<br>
+        Seu jeito, seu sorriso, seu olhar... tudo em você me faz querer ser alguém melhor.<br>
+        Você é meu lar, meu porto seguro e minha melhor escolha todos os dias.<br>
+        Obrigado por estar comigo, por me amar do jeito que sou e por fazer meu mundo mais bonito só por existir nele.<br>
+        Que venham muitos mais dias dos namorados juntos – e todos os outros também.
+    </p>
+    <p class="assinatura">
+        Com amor,<br>
+        João. 💖
+    </p>
+</div>
+
+<div class="frase-final">
+    Te amo com tudo o que sou! ❤️
+</div>
+
+</body>
+</html>
